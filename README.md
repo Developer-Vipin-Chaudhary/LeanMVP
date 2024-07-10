@@ -2,7 +2,9 @@
 
 ## how to quickly setup the application for testing
 
-## I pushed the ENV to this private repo, so you can test it out quickly without worrying about Database and other configurations
+## Env
+
+use .env.example to setup .env values both in frontend and backend
 
 ### start frontend
 
