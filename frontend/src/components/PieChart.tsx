@@ -19,7 +19,7 @@ const DashboardPieChart = ({ PieChartData }) => {
             paddingAngle={5}
             dataKey="value"
           >
-            {PieChartData.map((entry, index) => (
+            {PieChartData.map((_entry, index) => (
               <Cell
                 key={`cell-${index}`}
                 fill={COLORS[index % COLORS.length]}
