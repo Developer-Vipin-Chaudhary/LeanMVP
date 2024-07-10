@@ -1,13 +1,7 @@
 import { PieChart, Pie, Cell } from "recharts";
 
-const PieChatData = [
-  { name: "United States", value: 400 },
-  { name: "Canada", value: 300 },
-  { name: "Mexico", value: 300 },
-  { name: "Other", value: 200 },
-];
 const COLORS = ["lightgreen", "black", "lightblue", "purple"];
-const DashboardPieChart = () => {
+const DashboardPieChart = ({ PieChartData }) => {
   return (
     <div className="bg-gray-50 p-8 rounded shadow flex-1">
       <span className="text-gray-800 text-sm sm:text-base mx-2 sm:mx-4 font-bold">
@@ -16,7 +10,7 @@ const DashboardPieChart = () => {
       <div className="flex ">
         <PieChart width={250} height={300}>
           <Pie
-            data={PieChatData}
+            data={PieChartData}
             cx={120}
             cy={200}
             innerRadius={60}
@@ -25,7 +19,7 @@ const DashboardPieChart = () => {
             paddingAngle={5}
             dataKey="value"
           >
-            {PieChatData.map((entry, index) => (
+            {PieChartData.map((entry, index) => (
               <Cell
                 key={`cell-${index}`}
                 fill={COLORS[index % COLORS.length]}
@@ -35,7 +29,7 @@ const DashboardPieChart = () => {
         </PieChart>
         <div className="mt-32 ml-20">
           <ul>
-            {PieChatData.map((data, index) => (
+            {PieChartData.map((data, index) => (
               <li key={index} className="flex items-center mb-4">
                 <span
                   className="w-2 h-2   inline-block mr-2 rounded-full"

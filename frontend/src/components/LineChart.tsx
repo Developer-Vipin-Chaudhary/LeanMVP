@@ -1,4 +1,3 @@
-import React from "react";
 import {
   CartesianGrid,
   Legend,
@@ -9,52 +8,7 @@ import {
   YAxis,
 } from "recharts";
 
-const LineChartdata = [
-  {
-    name: "Jan",
-    ty: 4000,
-    ly: 2400,
-    amt: 2400,
-  },
-  {
-    name: "Feb",
-    ty: 3000,
-    ly: 1398,
-    amt: 2210,
-  },
-  {
-    name: "Mar",
-    ty: 2000,
-    ly: 9800,
-    amt: 2290,
-  },
-  {
-    name: "Apr",
-    ty: 2780,
-    ly: 3908,
-    amt: 2000,
-  },
-  {
-    name: "May",
-    ty: 1890,
-    ly: 4800,
-    amt: 2181,
-  },
-  {
-    name: "Jun",
-    ty: 2390,
-    ly: 3800,
-    amt: 2500,
-  },
-  {
-    name: "Jul",
-    ty: 3490,
-    ly: 4300,
-    amt: 2100,
-  },
-];
-
-const DashboardLineChart = () => {
+const DashboardLineChart = ({ LineChartdata }) => {
   return (
     <div className="p-6 sm:p-10 m-2 sm:m-4 rounded-lg shadow bg-gray-50">
       <div className="flex items-center mb-4 flex-wrap">
@@ -81,7 +35,7 @@ const DashboardLineChart = () => {
       </div>
 
       <LineChart
-        width={Math.max(300, window.innerWidth - 700)}
+        width={1200}
         height={250}
         data={LineChartdata}
         margin={{ top: 5, right: 30, left: 20, bottom: 5 }}

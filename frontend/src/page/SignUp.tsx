@@ -13,11 +13,14 @@ const SingUp = () => {
   const SignUpHandler = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:3000/auth/register", {
-        username: name,
-        email,
-        password,
-      });
+      const response = await axios.post(
+        `${import.meta.env.VITE_SERVERURL}/auth/register`,
+        {
+          username: name,
+          email,
+          password,
+        }
+      );
       if (response.status === 200) {
         toast("User created successfully", { type: "success" });
         navigate("/");

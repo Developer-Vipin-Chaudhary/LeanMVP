@@ -12,10 +12,13 @@ const SingIn = () => {
   const SignInHandler = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:3000/auth/login", {
-        email,
-        password,
-      });
+      const response = await axios.post(
+        `${import.meta.env.VITE_SERVERURL}/auth/login`,
+        {
+          email,
+          password,
+        }
+      );
       if (response.status === 200) {
         toast("User logged in successfully", { type: "success" });
         localStorage.setItem("token", response.data.token);

@@ -3,7 +3,7 @@ import { Request, Response } from "express";
 import sequelize from "./config/db";
 import cors from "cors";
 import authRoutes from "./routes/auth";
-
+import dataRoute from "./routes/data";
 require("dotenv").config();
 
 let { PORT } = process.env;
@@ -21,6 +21,7 @@ app.get("/", async (req: Request, res: Response) => {
 });
 
 app.use("/auth", authRoutes);
+app.use("/api", dataRoute);
 
 if (sequelize) {
   sequelize

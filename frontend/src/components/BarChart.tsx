@@ -7,40 +7,8 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-const BarChartData = [
-  {
-    name: "Linux",
-    pv: 2400,
-    amt: 2400,
-  },
-  {
-    name: "Mac",
-    pv: 1398,
-    amt: 2210,
-  },
-  {
-    name: "IOS",
-    pv: 9800,
-    amt: 2290,
-  },
-  {
-    name: "Window",
-    pv: 3908,
-    amt: 2000,
-  },
-  {
-    name: "Android",
-    pv: 4800,
-    amt: 2181,
-  },
-  {
-    name: "Other",
-    pv: 3800,
-    amt: 2500,
-  },
-];
 
-const DashboardBarChat = () => {
+const DashboardBarChat = ({ BarChartData }) => {
   return (
     <div className="bg-gray-50 p-8 rounded shadow flex-1 ">
       <span className="text-gray-800 text-sm sm:text-base mx-2 sm:mx-4 font-bold">
