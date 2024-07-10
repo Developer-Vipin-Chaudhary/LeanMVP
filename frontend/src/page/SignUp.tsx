@@ -1,7 +1,25 @@
 import { Link } from "react-router-dom";
 import GoogleIcon from "../icons/Google";
+import { useState } from "react";
+import axios from "axios";
 
 const SingUp = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
+
+  const SignUpHandler = (e: { preventDefault: () => void }) => {
+    e.preventDefault();
+    axios
+      .post("http://localhost:3000/auth/register", {
+        email,
+        password,
+        username: name,
+      })
+      .then((res) => {
+        console.log(res);
+      });
+  };
   return (
     <main className="min-h-screen flex items-center justify-center py-20 bg-gray-100">
       <section className="flex flex-col lg:flex-row bg-white rounded-lg shadow-lg overflow-hidden w-full max-w-6xl mx-4 lg:mx-8 p-6 lg:p-12">
@@ -33,7 +51,7 @@ const SingUp = () => {
             <span className="border-b w-1/5 lg:w-1/4"></span>
           </div>
 
-          <form className="my-8">
+          <form className="my-8" onSubmit={SignUpHandler}>
             <div className="mb-4">
               <label
                 className="block text-gray-700 text-sm font-bold mb-2"
@@ -46,6 +64,8 @@ const SingUp = () => {
                 className="bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none text-sm"
                 type="text"
                 placeholder="Enter Your Name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
               />
             </div>
             <div className="mb-4">
@@ -60,6 +80,8 @@ const SingUp = () => {
                 className="bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none text-sm"
                 type="email"
                 placeholder="Enter Email Address"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </div>
             <div className="mb-4">
@@ -74,6 +96,8 @@ const SingUp = () => {
                 className="bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none text-sm"
                 type="password"
                 placeholder="Enter Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
               />
             </div>
             <div className="flex items-center justify-between mb-6">
