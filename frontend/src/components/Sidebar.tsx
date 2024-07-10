@@ -1,10 +1,47 @@
-import React, { FC } from "react";
+import axios from "axios";
+import React, { FC, useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 interface SidebarProps {
   isSidebarOpen: boolean;
 }
 
 const Sidebar: FC<SidebarProps> = ({ isSidebarOpen }) => {
+  const [username, setUsername] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(true);
+
+  useEffect(() => {
+    const fetchdata = async () => {
+      setLoading(true); // Start loading
+
+      try {
+        const response = await axios.get(
+          `${import.meta.env.VITE_SERVERURL}/api/user`,
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          }
+        );
+        if (response.status === 200) {
+          const data = response.data;
+
+          console.log(data);
+          setLoading(false); // Stop loading
+          setUsername(data.user.username);
+        }
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      } catch (error: any) {
+        toast.error(error.response.data.error);
+        console.log(error.response.data.error);
+        setLoading(false); // Stop loading
+      }
+    };
+    fetchdata();
+  }, []);
+
+  if (loading) return <div>Loading...</div>;
+
   return (
     <aside
       className={`w-64 bg-white shadow-lg p-4 fixed lg:relative z-20 transition-transform transform  border  border-white border-r-gray-200  ${
@@ -17,7 +54,7 @@ const Sidebar: FC<SidebarProps> = ({ isSidebarOpen }) => {
           alt="profile"
           className="w-8 h-8 rounded-full mr-2"
         />
-        <span className="text-xl font-semibold">ByeMind</span>
+        <span className="text-xl font-semibold">{username}</span>
       </div>
       <nav>
         <ul>

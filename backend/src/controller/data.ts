@@ -69,10 +69,19 @@ export const getdata = async (req: AuthRequest, res: Response) => {
     if (!user) {
       return res.status(404).json({ error: "User not found" });
     }
-    const username = user.username;
-    res
-      .status(200)
-      .json({ LineChartdata, username, BarChartData, PieChartData });
+    res.status(200).json({ LineChartdata, BarChartData, PieChartData });
+  } catch (error) {
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+export const getUser = async (req: AuthRequest, res: Response) => {
+  try {
+    const user = await User.findByPk(req.userId);
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+    res.status(200).json({ user });
   } catch (error) {
     res.status(500).json({ error: "Internal Server Error" });
   }
