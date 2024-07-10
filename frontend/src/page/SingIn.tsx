@@ -1,22 +1,32 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import GoogleIcon from "../icons/Google";
 import axios from "axios";
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 const SingIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
-  const SignInHandler = (e: { preventDefault: () => void }) => {
+  const SignInHandler = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
-    axios
-      .post("http://localhost:3000/auth/login", {
+    try {
+      const response = await axios.post("http://localhost:3000/auth/login", {
         email,
         password,
-      })
-      .then((res) => {
-        console.log(res);
       });
+      if (response.status === 200) {
+        toast("User logged in successfully", { type: "success" });
+        localStorage.setItem("token", response.data.token);
+        navigate("/dashboard");
+      }
+
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      toast(error.response.data.error, { type: "error" });
+      console.log(error.response.data.error);
+    }
   };
   return (
     <main className="min-h-screen flex items-center justify-center py-20 bg-gray-100">

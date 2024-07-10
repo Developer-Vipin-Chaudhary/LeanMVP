@@ -81,7 +81,7 @@ const DashboardLineChart = () => {
       </div>
 
       <LineChart
-        width={Math.max(300, window.innerWidth - 800)}
+        width={Math.max(300, window.innerWidth - 700)}
         height={250}
         data={LineChartdata}
         margin={{ top: 5, right: 30, left: 20, bottom: 5 }}

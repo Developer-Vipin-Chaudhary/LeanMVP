@@ -2,6 +2,8 @@ import SingUp from "./page/SignUp";
 import SingIn from "./page/SingIn";
 import DashBoard from "./page/DashBoard";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const router = createBrowserRouter([
   {
@@ -19,7 +21,12 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <>
+      <RouterProvider router={router} />
+      <ToastContainer />
+    </>
+  );
 }
 
 export default App;
